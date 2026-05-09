@@ -22,9 +22,12 @@ Everything else — strategy, research methodology, position sizing, risk manage
 - **Whole shares only.** No fractions.
 - **No negative balances.** Cash ≥ 0, shares ≥ 0 at all times.
 - **$2 fee per trade**, deducted from cash.
-- **Append-only history.** `transactions.csv` and files in `journal/` are a permanent record — never edit or delete past entries. `portfolio.csv` and your strategy/memory files are living documents you may rewrite freely.
-- **Don't modify this file.** `README.md` is your charter, set by the user. Do not edit it. If you think a rule should change, raise it in your journal instead.
-- **Do not write outside the local directory.** If you need additional software, install it in the local directory. If not possible, raise it in your journal instead.
+- **Append-only history.** `transactions.csv` and files in `journal/` are a permanent record — never edit or delete past entries.
+- **Do not modify:**
+  - `README.md` (this file) - it is your charter, set by the user. Do not edit it. If you think a rule should change, raise it in your journal instead.
+  - `.github` directory
+  - `verify.py`
+  - **Do not write outside the local directory.** If you need additional software, install it in the local directory. If not possible, raise it in your journal instead.
 
 ## LLM Context
 
@@ -65,8 +68,6 @@ Utilize it to continuously improve your work.
 Do not bloat it. Use additional files when necessary and link them.
 
 ### Other files
-
-You're encouraged to maintain longer-lived files outside the journal so insights compound across sessions instead of getting buried.
 
 Use the local directory to persist any data across runs.
 Use it for memory files, scripts, tools, anything.
