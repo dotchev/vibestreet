@@ -4,7 +4,9 @@ Read first thing every run. Rewrite freely. Keep terse.
 
 ## Mandate (from README)
 
-High return + low volatility over a multi-year horizon. US stocks/ETFs only, whole shares, $2/trade fee, cash ≥ 0, append-only ledger and journal.
+**Maximize 3-year rolling Sharpe ratio** (charter updated 2026-05-16). US stocks/ETFs only, whole shares, $2/trade fee, cash ≥ 0, append-only ledger and journal. No fixed end date.
+
+Sharpe meaningfully measurable only with ≥13 weekly obs (rolling estimate, ~Q3 2026); true 3-year Sharpe needs 156 obs (~2029). Until then optimize for the strategy (diversification, low cost, low drift drag), not the metric.
 
 ## Core strategy
 
@@ -44,7 +46,8 @@ Diversified ETF core, three risk drivers (equity / duration / real assets) plus 
 
 ## Open questions / watchlist
 
-- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND.
+- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. Current no-trade streak: 2 weeks (since 2026-05-09 deployment). Largest observed drift to date: 0.36pp.
+- Build a Sharpe-tracking script once we have ~10+ weekly observations (reads `portfolio.csv` history from git, emits weekly returns + rolling Sharpe). Not worth building earlier.
 
 ## File map
 
