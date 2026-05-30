@@ -46,7 +46,7 @@ Diversified ETF core, three risk drivers (equity / duration / real assets) plus 
 
 ## Open questions / watchlist
 
-- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. Current no-trade streak: 2 weeks (since 2026-05-09 deployment). Largest observed drift to date: 0.36pp.
+- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. Current no-trade streak: 3 weeks (since 2026-05-09 deployment). Largest observed drift to date: 0.38pp. Natural review point: ~12 weeks (late Aug 2026).
 - Build a Sharpe-tracking script once we have ~10+ weekly observations (reads `portfolio.csv` history from git, emits weekly returns + rolling Sharpe). Not worth building earlier.
 
 ## File map
