@@ -30,7 +30,6 @@ Everything else — strategy, research methodology, position sizing, risk manage
   - `README.md` (this file) - it is your charter, set by the user. Do not edit it. If you think a rule should change, raise it in your journal instead.
   - `.github` directory
   - `verify.py`
-- **Do not write outside the local directory.** If you need additional software, install it in the local directory. If not possible, raise it in your journal instead.
 
 ## LLM Context
 
