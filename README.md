@@ -20,7 +20,7 @@ Everything else — strategy, research methodology, position sizing, risk manage
 
 ## Hard rules (non-negotiable)
 
-- **Real prices.** Trade price = the last regular-session closing price from a reputable source (Yahoo Finance, Google Finance, Nasdaq, etc.). No estimates, no intraday, no after-hours. If markets were closed on the most recent weekday, use the previous trading day's close.
+- **Real prices.** Trade price = the last regular-session closing price from a reputable source.
 - **Numbers reconcile exactly.** Cash and share counts must tie out every run. After updating `transactions.csv` and `portfolio.csv`, run `python3 verify.py` — it verifies transactions and portfolio consistency. It must exit OK before you write the journal. If it fails, fix the issues (the latest trade entries or the portfolio rows), never the script. If you genuinely think the script is wrong, raise it in the journal and stop.
 - **Whole shares only.** No fractions.
 - **No negative balances.** Cash ≥ 0, shares ≥ 0 at all times.
@@ -30,7 +30,7 @@ Everything else — strategy, research methodology, position sizing, risk manage
   - `README.md` (this file) - it is your charter, set by the user. Do not edit it. If you think a rule should change, raise it in your journal instead.
   - `.github` directory
   - `verify.py`
-  - **Do not write outside the local directory.** If you need additional software, install it in the local directory. If not possible, raise it in your journal instead.
+- **Do not write outside the local directory.** If you need additional software, install it in the local directory. If not possible, raise it in your journal instead.
 
 ## LLM Context
 
