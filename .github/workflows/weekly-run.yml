@@ -38,12 +38,32 @@ jobs:
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
+          set -o pipefail  # surface claude's exit code through the pipe
           claude \
             --model opus \
             --effort max \
             --dangerously-skip-permissions \
             --verbose \
-            -p "Do a weekly run per README.md."
+            --output-format stream-json \
+            -p "Do a weekly run per README.md." \
+            | tee run.jsonl \
+            | jq -r '
+                select(.type == "assistant")
+                | .message.content[]?
+                | if .type == "thinking" then "🧠 THINKING:\n" + .thinking
+                  elif .type == "text" then "💬 " + .text
+                  elif .type == "tool_use" then "🔧 " + .name + " " + (.input | tostring)
+                  else empty end
+              '
+
+      - name: Upload run log
+        if: always()  # capture the log even if the agent or verify step fails
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-log-${{ github.run_id }}
+          path: run.jsonl
+          if-no-files-found: warn
+          retention-days: 90
 
       - name: Verify results
         run: python3 verify.py
