@@ -22,6 +22,14 @@ Diversified ETF core, three risk drivers (equity / duration / real assets) plus 
 
 ≈ 66 / 20 / 8 / 6 across equity / bonds / gold / cash.
 
+## Benchmark (NASDAQ Composite, ^IXIC)
+
+Compare on return + Sharpe every run. Inception baseline: **26,247.08** (2026-05-08 close).
+Record the Friday ^IXIC level in each journal's benchmark table and carry the column forward —
+since-inception excess return is then one lookup, not a re-fetch. As of 2026-06-05: port −1.28%
+vs NDX −2.05% (ahead +0.76pp). Expect this low-beta book to lag in tech-led up-weeks and protect
+in down-weeks; the edge thesis is risk-adjusted, not raw return.
+
 ## Operating rules
 
 - **Rebalance trigger:** any holding drifts ≥ ±5 percentage points from target, OR cash drifts outside 3–10%. Otherwise hold. Keeps trade count and fee drag low.
@@ -32,10 +40,10 @@ Diversified ETF core, three risk drivers (equity / duration / real assets) plus 
 
 ## Data sources (what works in this env)
 
-- **Primary:** `stockanalysis.com/etf/<ticker>/history/` via WebFetch — clean historical tables.
-- **Cross-check:** `marketbeat.com/stocks/NYSEARCA/<ticker>/chart/` via WebFetch is reliable; WebSearch snippets sometimes return stale or intraday quotes — prefer two WebFetch sources over a search snippet when they disagree.
-- **Avoid:** `finance.yahoo.com/quote/.../history` — returns 503 to WebFetch. Google Finance redirects to consent flow. `nasdaq.com/.../historical` has timed out.
-- **WebFetch caveat:** the summarizer occasionally mislabels day-of-week (e.g. calling Monday "Sunday"). The numeric prices in the same response have been correct — verify dates against the calendar, not the label.
+- **Primary:** `yfinance` (pip-install each run; README-preferred). `yf.download([...tickers, "^IXIC"], start=, end=, auto_adjust=False)["Close"]` returns clean daily closes for ETFs *and* the NASDAQ Composite in one call. Confirmed 2026-06-05.
+- **Cross-check (independent):** `stockanalysis.com/etf/<ticker>/history/` via WebFetch — matched yfinance exactly on 2026-06-05. `marketbeat.com/stocks/NYSEARCA/<ticker>/chart/` also reliable. Verify ≥2 tickers each run; cross-check harder on big-move weeks.
+- **Avoid:** `finance.yahoo.com/quote/.../history` 503s to WebFetch (but yfinance reaches Yahoo's *API* fine — only the HTML history page is blocked). Google Finance consent redirect. `nasdaq.com/.../historical` times out.
+- **WebFetch caveat:** summarizer occasionally mislabels day-of-week; numeric prices in the same response have been correct — verify dates against the calendar, not the label.
 
 ## Things to evaluate over time (not now)
 
@@ -46,8 +54,9 @@ Diversified ETF core, three risk drivers (equity / duration / real assets) plus 
 
 ## Open questions / watchlist
 
-- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. Current no-trade streak: 3 weeks (since 2026-05-09 deployment). Largest observed drift to date: 0.38pp. Natural review point: ~12 weeks (late Aug 2026).
-- Build a Sharpe-tracking script once we have ~10+ weekly observations (reads `portfolio.csv` history from git, emits weekly returns + rolling Sharpe). Not worth building earlier.
+- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. No-trade streak: 4 weeks (since 2026-05-09 deployment). Largest drift to date: 0.59pp (IAU, 2026-06-05). Review point: ~12 weeks (late Aug 2026).
+- Build a Sharpe-tracking script once we have ~10+ weekly observations (reads `portfolio.csv` history from git, emits weekly returns + rolling Sharpe). At n=4 now; not worth building yet.
+- **Regime watch:** 2026-06-05 was a real-rates shock (hot May jobs → Fed hike bets) — BND *and* IAU fell *with* equities, not against them. If higher-for-longer persists for multiple weeks the bond/gold diversification weakens → trigger to evaluate a TIPS sleeve (SCHP). One session ≠ trend; act only if confirmed.
 
 ## File map
 
