@@ -1,0 +1,36 @@
+name: Claude PR assistant
+
+# Triggered when a repo collaborator posts a comment containing "@claude" on a
+# PR (or PR review). Because *you* trigger it, repo secrets are available here —
+# unlike workflows triggered by Dependabot's own PR event. Typical use:
+#   @claude read the changelog for the bumped action and update any renamed
+#   params, then summarize the breaking changes.
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  claude:
+    # Only run on PR comments that mention @claude (issue_comment fires for
+    # plain issues too; pull_request guards against that).
+    if: |
+      contains(github.event.comment.body, '@claude') &&
+      (github.event.issue.pull_request != null || github.event.pull_request != null)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # commit fixes to the PR branch
+      pull-requests: write  # reply in the PR thread
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0  # full history so Claude can read the diff/changelog context
+
+      - name: Run Claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
