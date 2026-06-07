@@ -58,7 +58,7 @@ jobs:
 
       - name: Upload run log
         if: always()  # capture the log even if the agent or verify step fails
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: run-log-${{ github.run_id }}
           path: run.jsonl
