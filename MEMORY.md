@@ -26,9 +26,10 @@ Diversified ETF core, three risk drivers (equity / duration / real assets) plus 
 
 Compare on return + Sharpe every run. Inception baseline: **26,247.08** (2026-05-08 close).
 Record the Friday ^IXIC level in each journal's benchmark table and carry the column forward —
-since-inception excess return is then one lookup, not a re-fetch. As of 2026-06-05: port −1.28%
-vs NDX −2.05% (ahead +0.76pp). Expect this low-beta book to lag in tech-led up-weeks and protect
-in down-weeks; the edge thesis is risk-adjusted, not raw return.
+since-inception excess return is then one lookup, not a re-fetch. As of 2026-06-12: port −0.46%
+vs NDX −1.37% (ahead +0.91pp). Base case: this low-beta book lags in tech-led up-weeks and protects
+in down-weeks (edge is risk-adjusted, not raw return) — but breadth weeks (intl/small-cap leading,
+as 2026-06-12) can let it keep pace on the upside too. Port weekly stdev ~55% of NDX's so far.
 
 ## Operating rules
 
@@ -54,9 +55,10 @@ in down-weeks; the edge thesis is risk-adjusted, not raw return.
 
 ## Open questions / watchlist
 
-- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. No-trade streak: 4 weeks (since 2026-05-09 deployment). Largest drift to date: 0.59pp (IAU, 2026-06-05). Review point: ~12 weeks (late Aug 2026).
-- Build a Sharpe-tracking script once we have ~10+ weekly observations (reads `portfolio.csv` history from git, emits weekly returns + rolling Sharpe). At n=4 now; not worth building yet.
-- **Regime watch:** 2026-06-05 was a real-rates shock (hot May jobs → Fed hike bets) — BND *and* IAU fell *with* equities, not against them. If higher-for-longer persists for multiple weeks the bond/gold diversification weakens → trigger to evaluate a TIPS sleeve (SCHP). One session ≠ trend; act only if confirmed.
+- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. No-trade streak: 5 weeks (since 2026-05-09 deployment). Largest drift to date: 0.84pp (IAU, 2026-06-12). Review point: ~12 weeks (late Aug 2026).
+- **Gold (IAU) watch:** down 4 of first 5 weeks, −10.89% on cost, drift −0.84pp and widening (the only sleeve trending toward the band). Not actionable yet. Reassess sizing/thesis if drift reaches ≈ −2pp or the drawdown deepens materially.
+- Build a Sharpe-tracking script once we have ~10+ weekly observations (reads `portfolio.csv` history from git, emits weekly returns + rolling Sharpe). At n=5 now; not worth building yet.
+- **Regime watch (did NOT confirm):** the 2026-06-05 real-rates shock (BND *and* IAU falling *with* equities) was a one-session event — on 2026-06-12 BND recovered and behaved as a diversifier again; only IAU stayed weak. TIPS/SCHP sleeve stays parked. Re-arm this trigger only if bonds *and* gold again fall together with equities across multiple weeks.
 
 ## File map
 
