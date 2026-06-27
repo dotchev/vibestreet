@@ -26,12 +26,13 @@ Diversified ETF core, three risk drivers (equity / duration / real assets) plus 
 
 Compare on return + Sharpe every run. Inception baseline: **26,247.08** (2026-05-08 close).
 Record the Friday ^IXIC level in each journal's benchmark table and carry the column forward —
-since-inception excess return is then one lookup, not a re-fetch. As of 2026-06-18: port +0.09%
-vs NDX +1.03% (**behind −0.95pp** — raw-return lead flipped after one tech-led up-week; was ahead
-+0.91pp on 06-12). Base case: this low-beta book lags in tech-led up-weeks (06-18: −1.88pp) and
-protects in down-weeks (06-05: +2.42pp) — edge is risk-adjusted, not raw return. Breadth weeks
-(intl/small-cap leading, as 06-12) can let it keep pace on the upside; when small-cap value reverses
-(as 06-18) the cushion is gone. Port weekly stdev ~51% of NDX's so far (n=6).
+since-inception excess return is then one lookup, not a re-fetch. As of 2026-06-26: port −1.58%
+vs NDX −3.62% (**ahead +2.04pp** — raw-return lead flipped back after one protective down-week; was
+behind −0.95pp on 06-18). Base case (now well established, symmetric): this low-beta book lags in
+tech-led up-weeks (06-18: −1.88pp; 05-29: −1.24pp) and protects in down-weeks (06-26: +2.94pp;
+06-05: +2.42pp) — edge is risk-adjusted, but in down-weeks raw return benefits too. Outperformed NDX
+in **4 of 7** weeks, incl. **all 3 down-weeks**. The since-inception line keeps flipping with the
+tape; don't over-read either direction. Port weekly stdev ~46% of NDX's so far (n=7).
 
 ## Operating rules
 
@@ -39,7 +40,7 @@ protects in down-weeks (06-05: +2.42pp) — edge is risk-adjusted, not raw retur
 - **Per-run trade cap:** prefer ≤ 3 trades unless rebalancing requires more. Five trades/week = ~0.52% annual drag — meaningful.
 - **No same-day reversals.** `verify.py` blocks two trades for the same (date, ticker) anyway.
 - **Trade-date convention:** use the trading day whose close was the basis (typically the Friday before a Saturday run), not the run day.
-- **Holiday calendar:** US market holidays mean "last close" may be Thu (or earlier), not Fri — confirm the last trading day from the data, not the calendar. Confirmed: Juneteenth (Fri 06-19) closed markets → 06-20 run priced off Thu 06-18. **Next: 07-04 is a Saturday, so Fri 07-03 is the observed holiday — the 07-04 run will likely price off Thu 07-02.**
+- **Holiday calendar:** US market holidays mean "last close" may be Thu (or earlier), not Fri — confirm the last trading day from the data, not the calendar. Confirmed: Juneteenth (Fri 06-19) closed markets → 06-20 run priced off Thu 06-18. **Next: 07-04 is a Saturday → Independence Day observed Fri 07-03 (full close), so the 07-04 run will likely price off Thu 07-02.**
 - **Always run `python3 verify.py` before writing the journal.** Fix the data, never the script.
 
 ## Data sources (what works in this env)
@@ -58,10 +59,11 @@ protects in down-weeks (06-05: +2.42pp) — edge is risk-adjusted, not raw retur
 
 ## Open questions / watchlist
 
-- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. No-trade streak: 6 weeks (since 2026-05-09 deployment). Largest drift to date: 0.87pp (IAU, 2026-06-18). Review point: ~12 weeks (late Aug 2026).
-- **Gold (IAU) watch:** down 4 of 6 weeks but flat-to-up the last two (+0.18% on 06-18), −10.73% on cost, drift −0.87pp (still widening slowly). The only sleeve near the band. Not actionable yet. Reassess sizing/thesis if drift reaches ≈ −2pp or the drawdown deepens materially.
-- Build a Sharpe-tracking script once we have ~10+ weekly observations (reads `portfolio.csv` history from git, emits weekly returns + rolling Sharpe). At n=6 now; not worth building yet.
-- **Regime watch (did NOT confirm):** the 2026-06-05 real-rates shock (BND *and* IAU falling *with* equities) was a one-session event — on 2026-06-12 BND recovered and behaved as a diversifier again; only IAU stayed weak. TIPS/SCHP sleeve stays parked. Re-arm this trigger only if bonds *and* gold again fall together with equities across multiple weeks.
+- Track whether ±5pp drift band actually triggers — if 6 months in we've never rebalanced, that's a sign the band is too loose given low-vol assets like BND. No-trade streak: 7 weeks (since 2026-05-09 deployment). Largest drift to date: 1.00pp (IAU, 2026-06-26). Review point: ~12 weeks (late Aug 2026).
+- **Gold (IAU) watch:** worst week of the sample on 06-26 (−3.49%), now −13.85% on cost (was −10.73%), drift −1.00pp (new max, still widening). Reassessed 06-27 → **hold**: drift only half the −2pp review level and a tenth of the rebalance band; selling = selling into a drawdown; BND diversified this week so no regime confirmation; long-horizon real-asset thesis intact. Still the only sleeve near any threshold. Re-arm: drift ≈ −2pp, OR gold falls *with* bonds for multiple weeks.
+- Build a Sharpe-tracking script once we have ~10+ weekly observations (reads `portfolio.csv` history from git, emits weekly returns + rolling Sharpe). At n=7 now; not worth building yet.
+- **Regime watch (still NOT confirmed):** 06-05 real-rates shock (BND *and* IAU falling *with* equities) remains a one-session event. On 06-12 and again **06-26 BND rose and diversified** while only IAU stayed weak — single-asset (idiosyncratic) weakness, not a regime. TIPS/SCHP sleeve stays parked. Re-arm only if bonds *and* gold again fall together with equities across multiple weeks.
+- **Data TODO:** no reliable independent ^IXIC cross-check source found — stockanalysis/index/COMP (404), marketwatch/wsj/cnbc all blocked to WebFetch. ETF cross-checks (stockanalysis.com) still work and validate the shared yfinance pull by proxy. Find a working index source for big-move weeks.
 
 ## File map
 
