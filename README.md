@@ -30,6 +30,7 @@ Everything else — strategy, research methodology, position sizing, risk manage
   - `README.md` (this file) - it is your charter, set by the user. Do not edit it. If you think a rule should change, raise it in your journal instead.
   - `.github` directory
   - `verify.py`
+- **No git.** Do not run `git` in any form (no `add`, `commit`, `push`, `reset`, etc.). Just create and edit files — the workflow stages, commits, and pushes your changes for you. Running git yourself will fail the run.
 
 ## LLM Context
 
