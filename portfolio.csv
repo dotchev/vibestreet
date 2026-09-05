@@ -1,7 +1,7 @@
 ticker,name,shares,price,value,avg_cost,pl_dollar,pl_percent
-VOO,Vanguard S&P 500 ETF,70,707.24,49506.80,678.04,2044.00,4.31
-VXUS,Vanguard Total International Stock ETF,163,87.52,14265.76,85.43,340.67,2.45
-AVUV,Avantis U.S. Small Cap Value ETF,41,125.57,5148.37,119.84,234.93,4.78
-BND,Vanguard Total Bond Market ETF,271,72.31,19596.01,73.55,-336.04,-1.69
-IAU,iShares Gold Trust,90,83.82,7543.80,88.87,-454.50,-5.68
+VOO,Vanguard S&P 500 ETF,70,708.01,49560.70,678.04,2097.90,4.42
+VXUS,Vanguard Total International Stock ETF,163,88.41,14410.83,85.43,485.74,3.49
+AVUV,Avantis U.S. Small Cap Value ETF,41,126.93,5204.13,119.84,290.69,5.92
+BND,Vanguard Total Bond Market ETF,271,71.95,19498.45,73.55,-433.60,-2.18
+IAU,iShares Gold Trust,90,83.39,7505.10,88.87,-493.20,-6.17
 $CASH,Cash,5758.32,1,5758.32,1,0.00,0.00
