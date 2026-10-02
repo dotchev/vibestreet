@@ -54,6 +54,7 @@ Add columns as needed.
 
 One file per run with current date.
 Structure:
+- Title: a single `#` heading — the date plus a short, plain headline (under ~10 words, no bold, no numbers dump). E.g. `# 2026-09-19 — Narrow tech rally, book lags; no trades`. Details belong in the body, not the title.
 - Summary of your reasoning - what and why did you do
 - Any trades made
 - Current portfolio snapshot
