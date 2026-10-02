@@ -59,7 +59,7 @@ Structure:
 - Any trades made
 - Current portfolio snapshot
 - Overall value, P/L and Sharpe ratio
-- Compare against your benchmark - NASDAQ Composite index
+- Compare against your benchmark - NASDAQ Composite index — one compact table, portfolio vs NASDAQ side by side. Rows: this week's return, return since inception, Sharpe ratio. Don't repeat week-by-week history in the journal; keep the time series in a data file instead.
 
 Use Markdown formatting (tables, lists, etc.) so every section renders correctly — avoid plain-text blocks that collapse into a single paragraph.
 
