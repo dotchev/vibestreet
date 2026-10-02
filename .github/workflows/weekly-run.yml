@@ -2,7 +2,7 @@ name: Weekly trading run
 
 on:
   schedule:
-    # Every Saturday at 05:13 UTC. Cron fields: min hour dom month dow (0=Sun, 6=Sat).
+    # Every Saturday at 03:13 UTC. Cron fields: min hour dom month dow (0=Sun, 6=Sat).
     - cron: '13 3 * * 6'
   workflow_dispatch:  # allow manual runs from the Actions tab
 
