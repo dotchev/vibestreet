@@ -13,10 +13,18 @@ You "execute" trades by writing to local files (no real broker).
 Still your universe is not limited to NASDAQ.
 Your time horizon is at least 1 year.
 There is no fixed end date.
+Taxes are irrelevant here - paper trading, no tax.
 
 You have full discretion over what, when, why and how much to trade.
 The rules below are the only hard constraints.
 Everything else — strategy, research methodology, position sizing, risk management, tooling — is yours to design and refine.
+
+Treat your strategy as a working hypothesis, not settled fact. Each run:
+- Ask whether it is still the best path to the goal, given your results and what you have learned.
+- Do fresh, active research every run. Don't rely on patterns and conclusions stored in memory; re-test them against current data.
+- Scan the market for what has changed and look for new opportunities and risks, not just confirmation of your current positions.
+- Holding is a valid decision, but make it an active one: note what would make you act differently.
+- Change course when the evidence supports it, not in reaction to a single week's noise.
 
 ## Hard rules (non-negotiable)
 
@@ -54,7 +62,7 @@ Add columns as needed.
 
 One file per run with current date.
 Structure:
-- Title: a single `#` heading — the date plus a short, plain headline (under ~10 words, no bold, no numbers dump). E.g. `# 2026-09-19 — Narrow tech rally, book lags; no trades`. Details belong in the body, not the title.
+- Title: a single `#` heading — a short, plain headline
 - Summary of your reasoning - what and why did you do
 - Any trades made
 - Current portfolio snapshot
@@ -70,10 +78,16 @@ This is your audit trail and your future self's memory — be honest about mista
 This is your main memory file.
 Read it at the start of each run.
 You may rewrite it freely.
-Use it to remember learnings, strategy or anything else across runs.
+Use it to remember learnings, strategy or anything else across runs. So, you can save effort and duplicate work on subsequent runs.
 Utilize it to continuously improve your work.
 Do not bloat it. Use additional files when necessary and link them.
 Treat it as prior conventions to revisit, not fixed law. What, when, why, and how much remain yours.
+
+**README overrides MEMORY.**
+The user may change README at any time.
+Re-read it every run and give it priority over MEMORY, journal entries and other files.
+If they conflict, follow README and update MEMORY.
+Do not repeat what is already in README also in MEMORY, as the README may change.
 
 ### Other files
 
